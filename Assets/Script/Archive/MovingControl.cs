@@ -8,7 +8,6 @@ namespace Main
 {
     public class MovingControl : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
-
         Vector2 startPoint;
 
         public void OnPointerDown(PointerEventData eventData)
@@ -17,10 +16,9 @@ namespace Main
             startPoint = new Vector2(delta.x - transform.position.x, delta.y - transform.position.y);
         }
 
-
         public void OnBeginDrag(PointerEventData eventData)
         {
-            SetBorderCollider(false);
+            //GameEvents.OnBeginDrag.Invoke();
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -36,20 +34,7 @@ namespace Main
                             Mathf.RoundToInt(transform.position.y)
                             );
 
-            SetBorderCollider(true);
-
-        }
-
-        private void SetBorderCollider(bool status)
-        {
-            Collider2D[] colliders = GetComponentsInChildren<Collider2D>();
-            foreach (var item in colliders)
-            {
-                if (item.CompareTag("Border"))
-                {
-                    item.enabled = status;
-                }
-            }
+            //GameEvents.OnEndDrag.Invoke();
         }
 
     }

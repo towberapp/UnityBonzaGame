@@ -1,0 +1,35 @@
+{
+    "globalChainArray": [
+        {
+            "xPos": 1,
+            "yPos": 2,
+            "letterId": 3,
+            "stringLetter": "Д",
+            "letterArrays": [
+                {
+                    "xDelta": 0,
+                    "yDelta": 0,
+                    "idChainLetter": 2
+                },
+                {
+                    "xDelta": 0,
+                    "yDelta": 0,
+                    "idChainLetter": 2
+                }
+            ]
+        },
+        {
+            "xPos": 31,
+            "yPos": 23,
+            "letterId": 1,
+            "stringLetter": "А",
+            "letterArrays": [
+                {
+                    "xDelta": 2,
+                    "yDelta": 2,
+                    "idChainLetter": 2
+                }
+            ]
+        }
+    ]
+}
