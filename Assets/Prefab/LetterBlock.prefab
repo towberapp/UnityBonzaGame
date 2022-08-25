@@ -184,7 +184,6 @@ GameObject:
   - component: {fileID: 7808707149329379894}
   - component: {fileID: 7808707149329379889}
   - component: {fileID: 7808707149329379888}
-  - component: {fileID: 8902549660833423101}
   - component: {fileID: 7808707149329379903}
   m_Layer: 0
   m_Name: LetterBlock
@@ -232,6 +231,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   textComponent: {fileID: 7808707148958973577}
+  connector: {fileID: 5511788802859812660, guid: cfb01ef40151f4c4f9c8308e415592d5, type: 3}
 --- !u!114 &7808707149329379889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,19 +256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12fc9d8d6d717814d9003bce14d60d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8902549660833423101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7808707149329379902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36a79a6a748c49c4d871c743b0885cbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  connector: {fileID: 5511788802859812660, guid: cfb01ef40151f4c4f9c8308e415592d5, type: 3}
 --- !u!61 &7808707149329379903
 BoxCollider2D:
   m_ObjectHideFlags: 0

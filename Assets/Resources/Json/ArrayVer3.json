@@ -1,0 +1,56 @@
+{
+    "id": 1,
+    "letterArray": [
+        {
+            "xPos": 2,
+            "yPos": 2,
+            "groupId": 1,
+            "stringLetter": "Д"
+        },
+        {
+            "xPos": 6,
+            "yPos": 3,
+            "groupId": 2,
+            "stringLetter": "Е"
+        },
+        {
+            "xPos": 3,
+            "yPos": 8,
+            "groupId": 3,
+            "stringLetter": "Л"
+        },
+        {
+            "xPos": 6,
+            "yPos": 12,
+            "groupId": 4,
+            "stringLetter": "О"  
+        },
+
+        {
+            "xPos": 2,
+            "yPos": 10,
+            "groupId": 5,
+            "stringLetter": "С"
+        },
+        {
+            "xPos": 4,
+            "yPos": 10,
+            "groupId": 6,
+            "stringLetter": "О"
+        },
+        {
+            "xPos": 6,
+            "yPos": 10,
+            "groupId": 7,
+            "stringLetter": "В"
+        },
+        {
+            "xPos": 4,
+            "yPos": 6,
+            "groupId": 8,
+            "stringLetter": "О"
+        }
+
+
+    ]
+}

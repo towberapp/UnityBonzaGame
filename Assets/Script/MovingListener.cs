@@ -40,10 +40,15 @@ namespace Main
 
             transform.position = new Vector2(xPos,yPos);
 
+            Vector2Int oldPos = new Vector2Int(globalPublic.letterArray.xPos, globalPublic.letterArray.yPos);
+            Vector2Int newPos = new Vector2Int(xPos, yPos);
+
             globalPublic.letterArray.xPos = xPos;
             globalPublic.letterArray.yPos = yPos;
 
-            GameEvents.OnChechLetter.Invoke(globalPublic.letterArray, id);
+            GameEvents.ChangePosObjectEvent.Invoke(gameObject, oldPos, newPos);
+
+            //GameEvents.OnChechLetter.Invoke(globalPublic.letterArray, id);
         }
 
 

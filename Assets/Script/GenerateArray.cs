@@ -9,12 +9,12 @@ namespace Main
     {
         [SerializeField] private Transform letterFolder;
         [SerializeField] private GameObject letterPrefab;
+                        
 
         private void Start()
         {
-            TextAsset jsonTextFile = Resources.Load<TextAsset>("Json/SympleArray");
+            TextAsset jsonTextFile = Resources.Load<TextAsset>("Json/ArrayVer3");
             GlobalArray gArray = JsonUtility.FromJson<GlobalArray>(jsonTextFile.text);
-
             GenerateBlock(gArray.letterArray);    
         }
 
@@ -28,10 +28,17 @@ namespace Main
                     blockGlobal.letterArray = item;
                     blockGlobal.InitBlock();
 
-                GameEvents.OnEndDrag.Invoke(item.groupId);
+                GameEvents.SetObjToArraytEvent.Invoke(letter, item);
+
+                //GameEvents.OnEndDrag.Invoke(item.groupId);
             }
         }
     }
+
+
+
+
+
 
 
 
