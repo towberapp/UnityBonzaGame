@@ -9,14 +9,21 @@ namespace Main
         [SerializeField] private GameObject folderBackground;
         [SerializeField] private GameObject backCube;
 
-        [SerializeField] private int xPole;
-        [SerializeField] private int yPole;
-
-        private void Start()
+        private void Awake()
         {
-            for (int y = 0; y < yPole; y++)
+            GameEvents.LoadConfigDoneEvent.AddListener(OnLoadConfig);
+        }
+
+        private void OnLoadConfig()
+        {
+            Generate();
+        }
+
+        private void Generate()
+        {
+            for (int y = 0; y < GlobalStatic.yPole; y++)
             {
-                for (int x = 0; x < xPole; x++)
+                for (int x = 0; x < GlobalStatic.xPole; x++)
                 {
                     GameObject cube = Instantiate(backCube, new Vector2(x, y), Quaternion.identity, folderBackground.transform);
                     Color col = cube.GetComponent<SpriteRenderer>().color;

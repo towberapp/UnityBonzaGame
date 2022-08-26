@@ -7,6 +7,10 @@ namespace Main
     public static class GlobalStatic
     {
         public static List<LetterData> listLetterData = new();
+        public static LetterData[,] arrayLetter;
+
+        public static int xPole;
+        public static int yPole;
     }
 
 

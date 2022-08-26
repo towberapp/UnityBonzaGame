@@ -12,5 +12,31 @@ namespace Main
         {
             letterData.Add(data);
         }
+
+
+        public List<LetterData> GetListByIdGroup (int idgroup)
+        {
+            List<LetterData> list = new ();
+            foreach (var item in letterData)
+            {
+                if (item.letter.groupId == idgroup)
+                {
+                    list.Add(item);
+                }
+            }
+            return list;
+        }
+
+
+        public void SetGroupId(int from, int to)
+        {
+            foreach (var item in letterData)
+            {
+                if (item.letter.groupId == from)
+                {
+                    item.letter.groupId = to;
+                }
+            }
+        }
     }
 }

@@ -8,6 +8,8 @@ namespace Main
         private Camera cam;
         private int groipId;
         private BlockGlobalPublic globalPublic;
+        private Vector2Int startIntPoint;
+        private readonly GlobalArrayControl globalArrayControl = new();
 
         private void Awake()
         {
@@ -18,7 +20,9 @@ namespace Main
         public void OnPointerDown(PointerEventData eventData)
         {
             this.groipId = globalPublic.letterArray.groupId;
-            Vector2 delta = cam.ScreenToWorldPoint(eventData.position);            
+            this.startIntPoint = new Vector2Int(globalPublic.letterArray.xPos, globalPublic.letterArray.yPos);
+
+            Vector2 delta = cam.ScreenToWorldPoint(eventData.position);                        
             GameEvents.OnPonterDownEvent.Invoke(delta, groipId);
         }
 
@@ -35,10 +39,15 @@ namespace Main
          
         public void OnEndDrag(PointerEventData eventData)
         {
-            // before drop groip, check busy place
-            //
+            GameEvents.OnGragEnd.Invoke(groipId);
 
-            GameEvents.OnEndDrag.Invoke(groipId); 
+            int xPos = Mathf.RoundToInt(transform.position.x);
+            int yPos = Mathf.RoundToInt(transform.position.y);
+
+            Vector2Int newPos = new (xPos, yPos);
+            Vector2Int deltaPos = newPos - startIntPoint;
+
+            globalArrayControl.MoveGroupToPos(groipId, deltaPos);
         }
 
     }

@@ -13,12 +13,26 @@ namespace Main
         public UnityEvent onInit = new();
 
         [SerializeField] private TMP_Text textComponent;
+        [SerializeField] private GameObject textObject;
+
+        [SerializeField] private GameObject fon;
         [SerializeField] private GameObject connector;
+
 
         public void InitBlock()
         {
             onInit.Invoke();
             OnInitBlock();
+        }
+
+        public void MoveOn()
+        {
+
+        }
+
+        public void MoveOff()
+        {
+            
         }
 
         public void SetBorder(bool type)
@@ -33,9 +47,20 @@ namespace Main
                 Quaternion.Euler(new Vector3(0, 0, zRotation)), transform);
         }
 
+        public void SetPosition(Vector2Int pos)
+        {
+            transform.position = (Vector2)pos;
+        }
+
         public void BlinkLetter()
         {
             StartCoroutine(ChangeColorText());
+        }
+
+        private void OnInitBlock()
+        {
+            this.textComponent.text = this.letterArray.stringLetter;
+            transform.position = new Vector2(this.letterArray.xPos, this.letterArray.yPos);
         }
 
         private IEnumerator ChangeColorText()
@@ -45,23 +70,5 @@ namespace Main
             textComponent.color = Color.white;
         }
 
-        private void Awake()
-        {
-            GameEvents.ChangeIdGroupEvent.AddListener(OnGroupIdChange);
-        }
-
-        private void OnGroupIdChange(int fromID, int toId)
-        {
-            if (fromID == letterArray.groupId)
-            {
-                letterArray.groupId = toId;
-            }
-        }
-
-        private void OnInitBlock()
-        {
-            this.textComponent.text = this.letterArray.stringLetter;
-            transform.position = new Vector2(this.letterArray.xPos, this.letterArray.yPos);
-        }
     }
 }
