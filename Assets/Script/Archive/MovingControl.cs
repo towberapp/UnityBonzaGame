@@ -18,7 +18,6 @@ namespace Main
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            //GameEvents.OnBeginDrag.Invoke();
         }
 
         public void OnDrag(PointerEventData eventData)
@@ -33,8 +32,6 @@ namespace Main
                             Mathf.RoundToInt(transform.position.x),
                             Mathf.RoundToInt(transform.position.y)
                             );
-
-            //GameEvents.OnEndDrag.Invoke();
         }
 
     }

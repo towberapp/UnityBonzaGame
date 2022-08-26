@@ -8,6 +8,7 @@ namespace Main
     {        
 
         private GameObject[,] arrayObj = new GameObject[10, 20];
+        //private
 
         private void Awake()
         {
@@ -19,6 +20,7 @@ namespace Main
         {
             arrayObj[array.xPos, array.yPos] = arg0;
         }
+
 
         private void OnChangePos(GameObject arg0, Vector2Int oldPos, Vector2Int newPos)
         {

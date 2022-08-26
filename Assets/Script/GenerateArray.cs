@@ -20,56 +20,34 @@ namespace Main
 
         private void GenerateBlock(List<LetterArray> letterArray)
         {
+            //DictionaryLetterControl letterControl = new ();
+            ListLetterControl listLetterControl = new ();
+
             foreach (var item in letterArray)
             {
-                GameObject letter = Instantiate(letterPrefab, new Vector2(0,0), Quaternion.identity, letterFolder);
+                GameObject obj = Instantiate(letterPrefab, new Vector2(0,0), Quaternion.identity, letterFolder);
                 BlockGlobalPublic 
-                    blockGlobal = letter.GetComponent<BlockGlobalPublic>();
+                    blockGlobal = obj.GetComponent<BlockGlobalPublic>();
                     blockGlobal.letterArray = item;
-                    blockGlobal.InitBlock();
+                    
+                blockGlobal.InitBlock();
+                
+                LetterData letterData = new();
+                    letterData.letter = item;
+                    letterData.obj = obj;
 
-                GameEvents.SetObjToArraytEvent.Invoke(letter, item);
+                //letterControl.SetObjToDictionary(letter, item);
+
+                listLetterControl.AddLetterToList(letterData);
+                GameEvents.SetObjToArraytEvent.Invoke(obj, item);
 
                 //GameEvents.OnEndDrag.Invoke(item.groupId);
             }
+
+
         }
     }
 
-
-
-
-
-
-
-
-    [System.Serializable]
-    public class GlobalArray
-    {        
-        public int cointId;
-        public List<LetterArray> letterArray = new();
-    }
-
-
-    [System.Serializable]
-    public class LetterArray
-    {
-        public int xPos;
-        public int yPos;
-        public int groupId;
-        public int letterId;
-        public string stringLetter;
-        public List<ChainData> chain = new();
-    }
-
-
-    [System.Serializable]
-    public class ChainData
-    {
-        public int xDelta;
-        public int yDelta;
-        public int idChainLetter;
-        public bool isConnected = false;
-    }
 
 
 

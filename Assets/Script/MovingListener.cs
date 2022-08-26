@@ -7,7 +7,6 @@ namespace Main
 {
     public class MovingListener : MonoBehaviour
     {
- 
         private Vector2 startPoint;
         private BlockGlobalPublic globalPublic;
 

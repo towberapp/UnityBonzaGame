@@ -18,7 +18,6 @@ namespace Main
         public void OnPointerDown(PointerEventData eventData)
         {
             this.groipId = globalPublic.letterArray.groupId;
-
             Vector2 delta = cam.ScreenToWorldPoint(eventData.position);            
             GameEvents.OnPonterDownEvent.Invoke(delta, groipId);
         }
@@ -36,7 +35,10 @@ namespace Main
          
         public void OnEndDrag(PointerEventData eventData)
         {
-            GameEvents.OnEndDrag.Invoke(groipId);
+            // before drop groip, check busy place
+            //
+
+            GameEvents.OnEndDrag.Invoke(groipId); 
         }
 
     }
