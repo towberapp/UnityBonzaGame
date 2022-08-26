@@ -45,9 +45,9 @@ namespace Main
             globalPublic.letterArray.xPos = xPos;
             globalPublic.letterArray.yPos = yPos;
 
-            GameEvents.ChangePosObjectEvent.Invoke(gameObject, oldPos, newPos);
+            if (oldPos != newPos)
+                GameEvents.ChangePosObjectEvent.Invoke(oldPos, newPos);
 
-            //GameEvents.OnChechLetter.Invoke(globalPublic.letterArray, id);
         }
 
 

@@ -6,10 +6,15 @@ namespace Main
 {
     public static class GlobalStatic
     {
-        public static Dictionary<int, List<GameObject>> dictionaryLetter = new();
         public static List<LetterData> listLetterData = new();
     }
 
+
+    public class PosClass
+    {
+        public int x;
+        public int y;
+    }
 
 
     [System.Serializable]
@@ -18,7 +23,6 @@ namespace Main
         public LetterArray letter;
         public GameObject obj;
     }
-
 
 
     [System.Serializable]

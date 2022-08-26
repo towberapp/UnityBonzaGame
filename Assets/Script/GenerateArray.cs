@@ -20,7 +20,6 @@ namespace Main
 
         private void GenerateBlock(List<LetterArray> letterArray)
         {
-            //DictionaryLetterControl letterControl = new ();
             ListLetterControl listLetterControl = new ();
 
             foreach (var item in letterArray)
@@ -36,10 +35,9 @@ namespace Main
                     letterData.letter = item;
                     letterData.obj = obj;
 
-                //letterControl.SetObjToDictionary(letter, item);
 
                 listLetterControl.AddLetterToList(letterData);
-                GameEvents.SetObjToArraytEvent.Invoke(obj, item);
+                GameEvents.SetDataToArraytEvent.Invoke(letterData);
 
                 //GameEvents.OnEndDrag.Invoke(item.groupId);
             }

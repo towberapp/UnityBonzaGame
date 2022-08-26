@@ -17,8 +17,11 @@ namespace Main
         public static UnityEvent<LetterArray, int> OnChechLetter = new();
         public static UnityEvent<int, int> ChangeIdGroupEvent = new();
 
-        public static UnityEvent<GameObject, LetterArray> SetObjToArraytEvent = new();
-        public static UnityEvent<GameObject, Vector2Int, Vector2Int> ChangePosObjectEvent = new();
+        public static UnityEvent<LetterData> SetDataToArraytEvent = new();
+
+        //from to
+        public static UnityEvent<Vector2Int, Vector2Int> ChangePosObjectEvent = new();
+
 
 
         // ARCHIVE

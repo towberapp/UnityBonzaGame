@@ -5,7 +5,7 @@ namespace Main
 {
     public class DictionaryLetterControl
     {
-        private readonly Dictionary<int, List<GameObject>> dictionaryLetter = GlobalStatic.dictionaryLetter;
+   /*     private readonly Dictionary<int, List<GameObject>> dictionaryLetter = GlobalStatic.dictionaryLetter;
 
         public void SetObjToDictionary(GameObject obj, LetterArray letter)
         {
@@ -22,7 +22,7 @@ namespace Main
             }
             gameObjects.Add(obj);           
         }
-
+*/
  
     }
 }

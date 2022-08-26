@@ -4,51 +4,51 @@ using UnityEngine;
 
 namespace Main
 {
+
     public class GlobalObjArray : MonoBehaviour
     {        
 
-        private GameObject[,] arrayObj = new GameObject[10, 20];
-        //private
+        private LetterData[,] arrayLetter = new LetterData [10,20];
 
         private void Awake()
         {
             GameEvents.ChangePosObjectEvent.AddListener(OnChangePos);
-            GameEvents.SetObjToArraytEvent.AddListener(SetObjToArray);
+            GameEvents.SetDataToArraytEvent.AddListener(SetDataToArray);
         }
 
-        private void SetObjToArray(GameObject arg0, LetterArray array)
+        private void SetDataToArray(LetterData letterData)
+        {            
+            arrayLetter[letterData.letter.xPos, letterData.letter.yPos] = letterData;
+        }
+
+
+        private void OnChangePos(Vector2Int oldPos, Vector2Int newPos)
         {
-            arrayObj[array.xPos, array.yPos] = arg0;
+            arrayLetter[newPos.x, newPos.y] = arrayLetter[oldPos.x, oldPos.y];
+            arrayLetter[oldPos.x, oldPos.y] = null;
+
+            GenerateString(arrayLetter[newPos.x, newPos.y], newPos);
         }
 
 
-        private void OnChangePos(GameObject arg0, Vector2Int oldPos, Vector2Int newPos)
-        {
-            arrayObj[oldPos.x, oldPos.y] = null;
-            arrayObj[newPos.x, newPos.y] = arg0;
-
-            GenerateString(arg0, newPos);
-        }
-
-
-        private void GenerateString(GameObject arg0, Vector2Int newPos)
+        private void GenerateString(LetterData arg0, Vector2Int newPos)
         {
             GetGenerateArray(arg0, newPos, Vector2Int.left, Vector2Int.right, true);
             GetGenerateArray(arg0, newPos, Vector2Int.up, Vector2Int.down, false);
         }
 
 
-        private void GetGenerateArray(GameObject arg0, Vector2Int pos, Vector2Int from, Vector2Int to, bool horizontal) 
+        private void GetGenerateArray(LetterData arg0, Vector2Int pos, Vector2Int from, Vector2Int to, bool horizontal)
         {
-            List<GameObject> fromList = ShowString(pos, from);
-            List<GameObject> toList = ShowString(pos, to);
+            List<LetterData> fromList = ShowString(pos, from);
+            List<LetterData> toList = ShowString(pos, to);
 
-            List<GameObject> line = new();
-                line.AddRange(fromList);
-                line.Add(arg0);
-                line.AddRange(toList);
+            List<LetterData> line = new();
+            line.AddRange(fromList);
+            line.Add(arg0);
+            line.AddRange(toList);
 
-            if (line.Count < 2) return;
+            if (line.Count < 2) return;    
 
             string objWord = GetStringFromList(line);
             string findWord = "";
@@ -67,8 +67,9 @@ namespace Main
 
                         if (item.horizontal == horizontal)
                         {
-                            item.isConnect = true;                           
-                        } else
+                            item.isConnect = true;
+                        }
+                        else
                         {
                             blink = true;
                         }
@@ -85,57 +86,55 @@ namespace Main
             MergeController(line, checkConstain, findWord, horizontal, arg0);
         }
 
-        private void BlinkController(List<GameObject> line, int indexCointains, string word)
+
+        private void BlinkController(List<LetterData> line, int indexCointains, string word)
         {
             for (int i = indexCointains; i < (word.Length + indexCointains); i++)
             {
-                BlockGlobalPublic loc = line[i].GetComponent<BlockGlobalPublic>();
+                BlockGlobalPublic loc = line[i].obj.GetComponent<BlockGlobalPublic>();
                 loc.BlinkLetter();
             }
         }
 
-        private void MergeController(List<GameObject> line, int indexCointains, string word, bool type, GameObject arg)
+
+        private void MergeController(List<LetterData> line, int indexCointains, string word, bool type, LetterData arg)
         {
-            BlockGlobalPublic gl = arg.GetComponent<BlockGlobalPublic>();
-            int group = gl.letterArray.groupId;
+            int group = arg.letter.groupId;
 
             for (int i = indexCointains; i < (word.Length + indexCointains); i++)
-            {
-                BlockGlobalPublic loc = line[i].GetComponent<BlockGlobalPublic>();
-
-                if (loc.letterArray.groupId != group)
+            {                
+                if (line[i].letter.groupId != group)
                 {
+                    BlockGlobalPublic loc = line[i].obj.GetComponent<BlockGlobalPublic>();
+
                     // set Border
                     loc.SetBorder(type);
 
-                    GameEvents.ChangeIdGroupEvent.Invoke(loc.letterArray.groupId, group);
+                    Debug.Log("CHANGT GROUP! FROM: " + line[i].letter.groupId + ", to: " + group);
+                    //GameEvents.ChangeIdGroupEvent.Invoke(line[i].letter.groupId, group);
                 }
             }
         }
 
 
-
-        private string GetStringFromList(List<GameObject> list)
+        private string GetStringFromList(List<LetterData> list)
         {
             string words = "";
             foreach (var item in list)
             {
-                BlockGlobalPublic data = item.GetComponent<BlockGlobalPublic>();
-                LetterArray letterData = data.letterArray;
-
-                words += letterData.stringLetter;
+                words += item.letter.stringLetter;
             }
             return words;
         }
 
 
-        private List<GameObject> ShowString(Vector2Int pos, Vector2Int vector)
+        private List<LetterData> ShowString(Vector2Int pos, Vector2Int vector)
         {
-            List<GameObject> list = new ();
-            Vector2Int currentpos = pos+vector;
+            List<LetterData> list = new();
+            Vector2Int currentpos = pos + vector;
             while (CheckArray(currentpos))
             {
-                list.Add(arrayObj[currentpos.x, currentpos.y]);                                               
+                list.Add(arrayLetter[currentpos.x, currentpos.y]);
                 currentpos += vector;
             }
 
@@ -146,37 +145,13 @@ namespace Main
         }
 
 
-        private LetterArray GetLetter(Vector2Int pos)
-        {
-            BlockGlobalPublic data = arrayObj[pos.x, pos.y].GetComponent<BlockGlobalPublic>();
-            return data.letterArray;
-        }
-
-
         private bool CheckArray(Vector2Int pos)
         {
             if (pos.x < 0 || pos.y < 0) return false;
 
-            if (arrayObj[pos.x, pos.y] == null) return false;
+            if (arrayLetter[pos.x, pos.y] == null) return false;
             return true;
         }
-
-
-        private void ShowArray()
-        {
-            for (int i = 0; i < 20; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    if (arrayObj[j, i] != null)
-                    {                        
-                        LetterArray la = GetLetter(new Vector2Int(j,i));
-                        Debug.Log("LETTER: " + la.stringLetter + " coord: " + la.xPos + "," + la.yPos);                        
-                    }                    
-                }
-            }
-        }
-
 
     }
 }
