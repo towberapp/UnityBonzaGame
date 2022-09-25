@@ -1,8 +1,9 @@
 {
     "id": "demopack",
-    "name": "СТАРТ2",
-    "icon": "demopack_icon_128",    
+    "name": "СТАРТОВЫЙ",
+    "icon": "demopack_icon_128",
     "count": 2,
+    "ver": 1,
 
     "cross": [
         {

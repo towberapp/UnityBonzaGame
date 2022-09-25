@@ -9,5 +9,14 @@ namespace Main
         public Image icon;
         public TMP_Text title;
         public TMP_Text count;
+
+        public string idPack;
+        
+        public void ClickOnBtn()
+        {
+            UIController.loadPackEvent.Invoke(idPack);   
+        } 
+
     }
+    
 }
