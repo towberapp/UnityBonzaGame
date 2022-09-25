@@ -8,16 +8,62 @@ namespace Main
     {
         public static List<LetterData> listLetterData = new();
         public static LetterData[,] arrayLetter;
+        public static LetterArray[,] originalArrayLetter;
+        public static List<WordBasicSave> wordsGlobal = new();
 
+
+        public static Config config = new();
         public static int xPole;
         public static int yPole;
+        public static bool canMoveBlock = true;
+
+        public static void DebugObject(object obj)
+        {
+            var debugObj = JsonUtility.ToJson(obj);
+            Debug.Log(debugObj);
+        }
     }
 
 
-    public class PosClass
+    // save object
+    [System.Serializable]
+    public class GlobalArrayNew
     {
-        public int x;
-        public int y;
+        public string glue;
+        public int length;
+        public List<WordBasicSave> wordBasicSaves = new();
+    }
+
+    // save object
+    [System.Serializable]
+    public class WordBasicSave
+    {
+        public string word;
+        public bool horizontal;
+        public bool isConnect = false;
+        public int xStart;
+        public int yStart;
+    }
+
+
+    [System.Serializable]
+    public class Config
+    {
+        public int width;
+        public int height;
+        public string glue;
+    }
+
+
+    [System.Serializable]
+    public class WordBasicGenerate
+    {
+        public string word;
+        public bool horizontal;
+        public int xStart;
+        public int yStart;
+        public bool isActive = true;
+        public int groupId;
     }
 
 
@@ -30,20 +76,11 @@ namespace Main
 
 
     [System.Serializable]
-    public class GlobalArray
-    {
-        public int cointId;
-        public List<LetterArray> letterArray = new();
-    }
-
-
-    [System.Serializable]
     public class LetterArray
     {
         public int xPos;
         public int yPos;
-        public int groupId;
-        public int letterId;
+        public int groupId; 
         public string stringLetter;
     }
 }

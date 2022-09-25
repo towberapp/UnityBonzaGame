@@ -6,14 +6,15 @@ TagManager:
   tags:
   - Square
   - Border
+  - FxTemporaire
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - posprocessor
   - Water
   - UI
-  - 
+  - posprocessor2
   - 
   - 
   - 

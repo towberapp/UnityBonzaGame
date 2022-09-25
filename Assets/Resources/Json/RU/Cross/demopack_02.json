@@ -1,0 +1,34 @@
+{
+    "glue": "test glue",
+    "length": 4,
+    "wordBasicSaves": [
+        {
+            "word": "ТЕКСТ",
+            "horizontal": true,
+            "isConnect": false,
+            "xStart": 0,
+            "yStart": 3
+        },
+        {
+            "word": "КОНФЕТА",
+            "horizontal": false,
+            "isConnect": false,
+            "xStart": 1,
+            "yStart": 7
+        },
+        {
+            "word": "ТОРТ",
+            "horizontal": false,
+            "isConnect": false,
+            "xStart": 4,
+            "yStart": 3
+        },
+        {
+            "word": "АНТРИСОЛЬ",
+            "horizontal": true,
+            "isConnect": false,
+            "xStart": 1,
+            "yStart": 1
+        }
+    ]
+}

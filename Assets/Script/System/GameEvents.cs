@@ -10,8 +10,10 @@ namespace Main
     {
         public static UnityEvent<int> OnBeginDrag = new();
         public static UnityEvent<Vector2, int> OnPonterDownEvent = new();
+        public static UnityEvent<int> OnPonterUpEvent = new();
         public static UnityEvent<Vector2, int> OnGragEvent = new();
         public static UnityEvent<int> OnGragEnd = new();
+        public static UnityEvent winGameEvent = new();
 
         // allStatic Varible is load
         public static UnityEvent LoadConfigDoneEvent = new();

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,13 +7,7 @@ namespace Main
 {
     public class ListLetterControl
     {
-        private readonly List<LetterData> letterData = GlobalStatic.listLetterData;
-
-        public void AddLetterToList(LetterData data)
-        {
-            letterData.Add(data);
-        }
-
+        private List<LetterData> letterData = GlobalStatic.listLetterData;
 
         public List<LetterData> GetListByIdGroup (int idgroup)
         {
@@ -37,6 +32,19 @@ namespace Main
                     item.letter.groupId = to;
                 }
             }
+        }
+
+        public void DeleteListByIdGroup(int idGroup)
+        {
+            List<LetterData> newData = new();
+
+            foreach (var item in GlobalStatic.listLetterData)
+            {
+                if (item.letter.groupId != idGroup)
+                    newData.Add(item);
+            }
+
+            GlobalStatic.listLetterData = newData;
         }
     }
 }

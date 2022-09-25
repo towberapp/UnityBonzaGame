@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace Main
 {
-    public class MovingControlEvent : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+    public class MovingControlEvent : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
     {
         private Camera cam;
         private int groipId;
@@ -22,24 +22,35 @@ namespace Main
             this.groipId = globalPublic.letterArray.groupId;
             this.startIntPoint = new Vector2Int(globalPublic.letterArray.xPos, globalPublic.letterArray.yPos);
 
-            Vector2 delta = cam.ScreenToWorldPoint(eventData.position);                        
+            Vector2 delta = cam.ScreenToWorldPoint(eventData.position);
+
             GameEvents.OnPonterDownEvent.Invoke(delta, groipId);
+        }
+
+        public void OnPointerUp(PointerEventData eventData)
+        {
+           GameEvents.OnPonterUpEvent.Invoke(groipId);
+            //Debug.Log("POINT UP: " + groipId);
         }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            GameEvents.OnBeginDrag.Invoke(groipId);
+           GameEvents.OnBeginDrag.Invoke(groipId);
         }
 
         public void OnDrag(PointerEventData eventData)
         {           
             Vector2 pos = cam.ScreenToWorldPoint(eventData.position);
+            
+            if (GlobalStatic.canMoveBlock)
             GameEvents.OnGragEvent.Invoke(pos, groipId);          
         }
          
         public void OnEndDrag(PointerEventData eventData)
         {
             GameEvents.OnGragEnd.Invoke(groipId);
+
+            //Debug.Log("END DRAG: " + groipId);
 
             int xPos = Mathf.RoundToInt(transform.position.x);
             int yPos = Mathf.RoundToInt(transform.position.y);
@@ -49,6 +60,6 @@ namespace Main
 
             globalArrayControl.MoveGroupToPos(groipId, deltaPos);
         }
-
+ 
     }
 }

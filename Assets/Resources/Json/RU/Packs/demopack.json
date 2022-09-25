@@ -1,0 +1,17 @@
+{
+    "id": "demopack",
+    "name": "СТАРТ2",
+    "icon": "demopack_icon_128",    
+    "count": 2,
+
+    "cross": [
+        {
+            "id": "demopack_01",
+            "sort": 1
+        },
+        {
+            "id": "demopack_02",
+            "sort": 2
+        }
+    ]
+}
