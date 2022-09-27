@@ -8,10 +8,12 @@
     "cross": [
         {
             "id": "demopack_01",
+            "glue": "Демо кроссворд",            
             "sort": 1
         },
         {
             "id": "demopack_02",
+            "glue": "Демо кроссворд 2",
             "sort": 2
         }
     ]

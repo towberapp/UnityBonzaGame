@@ -5,7 +5,7 @@ namespace Main
 {
     public class JsonFileControl 
     {
-        string menuPath = "Json/RU/menu";
+        string menuPath = "Json/" + UIController.lang + "/menu";
 
         public MainMenuObject GetMenu()
         {
@@ -25,15 +25,19 @@ namespace Main
             {
                 string packName = "pack_" + pack.id;
 
+                // check version
+
                 if (!PlayerPrefs.HasKey(packName))
                 {
                     //check file
-                    string packsPath = "Json/RU/Packs/" + pack.id;
+                    string packsPath = "Json/"+ UIController.lang + "/Packs/" + pack.id;
                     TextAsset jsonPacks = Resources.Load<TextAsset>(packsPath);
 
                     if (jsonPacks != null)
                     {
                         Packs packs = JsonUtility.FromJson<Packs>(jsonPacks.text);
+                        //UpdateCrossData(packs);
+                        // check personal file
                         string json = JsonUtility.ToJson(packs);
                         PlayerPrefs.SetString(packName, json);
                     }
@@ -50,6 +54,23 @@ namespace Main
 
             return listPack;
         }
+
+
+       /* private void UpdateCrossData(Packs packs)
+        {
+            foreach (Cross cross in packs.cross)
+            {
+                //checkfile
+                string crossPath = "Json/" + UIController.lang + "/Cross/" + cross.id;
+                TextAsset jsonCross = Resources.Load<TextAsset>(crossPath);
+                //GlobalArrayNew dataCross = JsonUtility.FromJson<GlobalArrayNew>(jsonCross.text);
+
+                if (dataCross != null)
+                {
+                    cross.name = dataCross
+                }
+            }
+        }*/
 
     }
 }

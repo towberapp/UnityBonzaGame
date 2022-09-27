@@ -12,33 +12,53 @@ namespace Main
         [Header("UI Panels")]
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject selectPack;
+        [SerializeField] private GameObject beforeGame;
+
+        [Header("DevOp")]
+        [SerializeField] private bool clearPref = false;
 
         public static UnityEvent<string> loadPackEvent = new();
+        public static UnityEvent<Cross, Packs> loadCrossEvent = new();
+        public static UnityEvent loadMainMenu = new();
 
-        //[SerializeField] private TMP_Text clue;
+        public static string lang = "RU";
 
         private void Awake()
         {
-            GameEvents.LoadConfigDoneEvent.AddListener(OnLoad);
+            if (clearPref) PlayerPrefs.DeleteAll();
+
+            //GameEvents.LoadConfigDoneEvent.AddListener(OnLoad);
             loadPackEvent.AddListener(OnSelectPack);
+            loadMainMenu.AddListener(OnLoadMainMenu);
+            loadCrossEvent.AddListener(OnBeforeLoadCrossEvent);
+            
+            selectPack.SetActive(false);
+            beforeGame.SetActive(false);
+        }
+        
+        private void OnBeforeLoadCrossEvent(Cross cross, Packs pack)
+        {
+            beforeGame.SetActive(true);
+            beforeGame.GetComponent<BeforeGameControl>().SetData(cross, pack);
+            selectPack.SetActive(false);
+        }
+
+        private void OnLoadMainMenu()
+        {
+            mainMenu.SetActive(true);
         }
 
         private void OnSelectPack(string packId)
         {
             selectPack.SetActive(true);
-            Debug.Log("SELECT PACK: " + packId);
+            selectPack.GetComponent<SelectPackControl>().LoadCrossList(packId);            
         }
 
         private void Start()
         {
-            mainMenu.SetActive(true);
+            OnLoadMainMenu();
         }
 
-
-        private void OnLoad()
-        {
-            //clue.text = GlobalStatic.config.glue;
-        }
 
         private void OnDestroy()
         {
@@ -47,6 +67,12 @@ namespace Main
     }
 
 
+    [Serializable]
+    public class SelectCross
+    {
+        public string idPack;
+        public string idCross;
+    }
 
 
     [Serializable]
@@ -78,10 +104,11 @@ namespace Main
     [Serializable]
     public class Cross
     {
-        public string id;
-        public int sort;
-        public bool status = false;
+        public string id;        
+        public int sort;        
+        public bool status = false; // complete
         public int ver;
-        public string name;
+        public string glue;
+        public int length;
     }
 }
