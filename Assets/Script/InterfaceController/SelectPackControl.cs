@@ -27,15 +27,20 @@ namespace Main
 
         public void LoadCrossList(string packId)
         {
-            string loadJson = PlayerPrefs.GetString("pack_" + packId);                       
-            Packs loadPacks = JsonUtility.FromJson<Packs>(loadJson);
+            JsonFileControl jsonControl = new();
+            Packs loadPacks = jsonControl.GetPack(packId);
+
+            jsonControl.LoadCrossData();
+
 
             icon.sprite = Resources.Load<Sprite>("Icons/" + loadPacks.icon);
             title.text = loadPacks.name;
 
             int count = 1;
             foreach (Cross cross in loadPacks.cross)
-            {               
+            {
+                cross.status = jsonControl.GetCrossStatus(cross.id);
+
                 GameObject obj = Instantiate(crossBlockPrefab, Vector2.zero, Quaternion.identity, contentFolder.transform);
                 CrossListMenu menuObj = obj.GetComponent<CrossListMenu>();
                 menuObj.SetCross(cross, count, loadPacks);

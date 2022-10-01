@@ -16,7 +16,8 @@ namespace Main
         [SerializeField] private UnityEvent openGameMenu;
         [SerializeField] private UnityEvent<Cross, Packs> restartEvent;
 
-        private Cross cross;
+        public Cross cross;
+
         private Packs pack;
 
         public void SetData(Cross cross, Packs pack)

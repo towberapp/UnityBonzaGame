@@ -41,7 +41,7 @@ namespace Main
 
         private void OnWin()
         {
-            Invoke(nameof(FxShow), Random.Range(0.2f, 1.5f));           
+            Invoke(nameof(FxShow), Random.Range(0.2f, 3f));      
         }
 
 

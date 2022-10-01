@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Newtonsoft.Json;
 
 namespace Main
 {
+   
+
     public class GenerateArray : MonoBehaviour
     {        
         [SerializeField] private Transform letterFolder;
@@ -14,6 +17,11 @@ namespace Main
         private void Awake()
         {
             GameEvents.clearGame.AddListener(onClearLetter);
+        }
+
+        private void Start()
+        {
+            // test dict to json            
         }
 
         private void onClearLetter()
@@ -31,8 +39,6 @@ namespace Main
 
         public void StartGame(string crossId, int diff)
         {
-            //Debug.Log("START: " + crossId + ", diff: " + diff);
-
             string crossPath = "Json/" + UIController.lang + "/Cross/" + crossId;
             LoadGame(crossPath, diff);
         }

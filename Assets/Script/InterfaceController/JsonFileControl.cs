@@ -1,11 +1,56 @@
+using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Main
 {
+    [Serializable]
+    public class CrossStatus
+    {
+       public Dictionary<string, bool> data = new();
+    }
+
     public class JsonFileControl 
     {
-        string menuPath = "Json/" + UIController.lang + "/menu";
+        private string menuPath = "Json/" + UIController.lang + "/menu";
+        private Dictionary<string, bool> statusCross = new();
+        string name = "crossData";
+
+        public void LoadCrossData()
+        {            
+            if (PlayerPrefs.HasKey(name))
+            {
+                string crossData = PlayerPrefs.GetString(name);
+                CrossStatus dicNew = JsonConvert.DeserializeObject<CrossStatus>(crossData);
+                statusCross = dicNew.data;                
+            }
+        }
+
+        public bool GetCrossStatus(string crossId)
+        {
+            return statusCross.ContainsKey(crossId);
+        }
+
+        public void DeleteAllCrossStatus()
+        {
+            PlayerPrefs.DeleteKey(name);
+        }
+
+        public void SaveCrossStatus(string crossId)
+        {
+            LoadCrossData();
+            if (GetCrossStatus(crossId)) return;
+
+            statusCross[crossId] = true;
+            CrossStatus 
+                cs = new();
+                cs.data = statusCross;
+
+            string json = JsonConvert.SerializeObject(cs, Formatting.Indented);
+            PlayerPrefs.SetString(name, json);
+        }
+
 
         public MainMenuObject GetMenu()
         {
@@ -24,63 +69,36 @@ namespace Main
                 return true;
         }
 
+        public void SetCrossIsDone()
+        {
+
+        }
+
+        public Packs GetPack(string packId)
+        {
+            string packsPath = "Json/" + UIController.lang + "/Packs/" + packId;
+            TextAsset jsonPacks = Resources.Load<TextAsset>(packsPath);
+            return JsonUtility.FromJson<Packs>(jsonPacks.text);
+        }
+
 
         public List<Packs> GetListPack()
         {
             MainMenuObject menuObject = GetMenu();
-
             List<Packs> listPack = new();
 
             foreach (PacksMenu pack in menuObject.packs)
             {
-                string packName = "pack_" + pack.id;
-
-                // check version
-
-                if (!PlayerPrefs.HasKey(packName))
-                {
-                    //check file
-                    string packsPath = "Json/"+ UIController.lang + "/Packs/" + pack.id;
-                    TextAsset jsonPacks = Resources.Load<TextAsset>(packsPath);
-
-                    if (jsonPacks != null)
-                    {
-                        Packs packs = JsonUtility.FromJson<Packs>(jsonPacks.text);
-                        //UpdateCrossData(packs);
-                        // check personal file
-                        string json = JsonUtility.ToJson(packs);
-                        PlayerPrefs.SetString(packName, json);
-                    }
+                Packs packs = GetPack(pack.id);                
+                if (packs != null)
+                {                    
+                    listPack.Add(packs);
                 }
-                else
-                {
-                    // check ver and replace
-                }
-
-                string loadJson = PlayerPrefs.GetString(packName);
-                Packs loadPacks = JsonUtility.FromJson<Packs>(loadJson);
-                listPack.Add(loadPacks);
             }
-
             return listPack;
         }
 
-
-       /* private void UpdateCrossData(Packs packs)
-        {
-            foreach (Cross cross in packs.cross)
-            {
-                //checkfile
-                string crossPath = "Json/" + UIController.lang + "/Cross/" + cross.id;
-                TextAsset jsonCross = Resources.Load<TextAsset>(crossPath);
-                //GlobalArrayNew dataCross = JsonUtility.FromJson<GlobalArrayNew>(jsonCross.text);
-
-                if (dataCross != null)
-                {
-                    cross.name = dataCross
-                }
-            }
-        }*/
+ 
 
     }
 }

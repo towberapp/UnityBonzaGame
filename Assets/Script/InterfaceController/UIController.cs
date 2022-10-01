@@ -7,19 +7,22 @@ using UnityEngine.Events;
 
 namespace Main
 {
+
     public class UIController : MonoBehaviour
     {
-        [Header("UI Panels")]
-        [SerializeField] private GameObject mainMenu;
+        [Header("UI Panels")]        
         [SerializeField] private GameObject selectPack;
         [SerializeField] private GameObject beforeGame;
         [SerializeField] private GameObject notificationPanel;
-        [SerializeField] private GameObject topMenuCross;
-        [SerializeField] private GameObject inGameMenu;
+
+        [Header("Script")]
+        [SerializeField] private TopMenuGame topmenu;
+
 
         [Header("DevOp")]
-        [SerializeField] private bool clearPref = false;
+        [SerializeField] private bool clearPref = false;        
 
+        [Header("Events")]
         public static UnityEvent<string> loadPackEvent = new();
         public static UnityEvent<Cross, Packs> loadCrossEvent = new();             
         public static UnityEvent<string> notificationEvent = new();
@@ -28,16 +31,30 @@ namespace Main
 
         [SerializeField] private UnityEvent loadGame;        
         [SerializeField] private UnityEvent<string> selectPackEventLocal;
+        [SerializeField] private UnityEvent winEvent;
+
+        JsonFileControl jsonControl = new();
+
 
         private void Awake()
-        {
-            if (clearPref) PlayerPrefs.DeleteAll();            
+        {    
+            if (clearPref) PlayerPrefs.DeleteAll();                 
+
             loadPackEvent.AddListener(OnSelectPack);
             loadGame.Invoke();
 
             loadCrossEvent.AddListener(OnBeforeLoadCrossEvent);            
             notificationEvent.AddListener(OnNotification);
-            
+
+            GameEvents.winGameEvent.AddListener(OnWin);            
+        }
+
+        private void OnWin()
+        {
+            string crossId = topmenu.cross.id;
+
+            winEvent.Invoke();
+            jsonControl.SaveCrossStatus(crossId);
         }
 
         public void OnNotification(string notif)
