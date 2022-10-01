@@ -9,13 +9,14 @@ namespace Main
         public static List<LetterData> listLetterData = new();
         public static LetterData[,] arrayLetter;
         public static LetterArray[,] originalArrayLetter;
-        public static List<WordBasicSave> wordsGlobal = new();
-
+        public static List<WordBasicSave> wordsGlobal = new();       
 
         public static Config config = new();
         public static int xPole;
         public static int yPole;
         public static bool canMoveBlock = true;
+
+
 
         public static void DebugObject(object obj)
         {
@@ -23,7 +24,6 @@ namespace Main
             Debug.Log(debugObj);
         }
     }
-
 
     // save object
     [System.Serializable]

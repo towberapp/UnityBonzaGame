@@ -7,17 +7,35 @@ using TMPro;
 namespace Main
 {
     public class GenerateArray : MonoBehaviour
-    {
-        [SerializeField] private string loadFileName;
+    {        
         [SerializeField] private Transform letterFolder;
-        [SerializeField] private GameObject letterPrefab;       
+        [SerializeField] private GameObject letterPrefab;
 
-        private void Start()
+        private void Awake()
         {
-            JsonController jsonController = new JsonController();
-            
-            List<LetterArray> letterArray = jsonController.Init(loadFileName);
+            GameEvents.clearGame.AddListener(onClearLetter);
+        }
 
+        private void onClearLetter()
+        {
+            foreach (Transform child in letterFolder)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        public void StartGame(string crossId, int diff)
+        {
+            Debug.Log("START: " + crossId + ", diff: " + diff);
+
+            string crossPath = "Json/" + UIController.lang + "/Cross/" + crossId;
+            LoadGame(crossPath, diff);
+        }
+
+        private void LoadGame(string loadFileName, int diff)
+        {
+            JsonController jsonController = new JsonController();            
+            List<LetterArray> letterArray = jsonController.Init(loadFileName, diff);
             GameEvents.LoadConfigDoneEvent.Invoke();            
 
             foreach (var item in letterArray)
@@ -42,7 +60,6 @@ namespace Main
             // connect 
             GlobalArrayControl globalArrayControl = new();
                 globalArrayControl.SetConnector();
-
         }
 
 

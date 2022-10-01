@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Main
@@ -17,11 +18,11 @@ namespace Main
         [SerializeField] private Image icon;
         [SerializeField] private TMP_Text title;
 
+        [SerializeField] private UnityEvent onBackSelectPack;
 
         public void OnClickBack()
         {
-            UIController.loadMainMenu.Invoke();
-            gameObject.SetActive(false);
+            onBackSelectPack.Invoke();           
         }
 
         public void LoadCrossList(string packId)
@@ -34,7 +35,7 @@ namespace Main
 
             int count = 1;
             foreach (Cross cross in loadPacks.cross)
-            {
+            {               
                 GameObject obj = Instantiate(crossBlockPrefab, Vector2.zero, Quaternion.identity, contentFolder.transform);
                 CrossListMenu menuObj = obj.GetComponent<CrossListMenu>();
                 menuObj.SetCross(cross, count, loadPacks);

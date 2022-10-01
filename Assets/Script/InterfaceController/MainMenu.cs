@@ -16,17 +16,6 @@ namespace Main
         [SerializeField] private GameObject menuBlockPrefab;
 
 
-        private void Awake()
-        {
-            UIController.loadPackEvent.AddListener(OnLoadPack);
-        }
-
-        private void OnLoadPack(string arg0)
-        {
-            gameObject.SetActive(false);
-        }
-
-
         private void Start()
         {
             JsonFileControl jsonControl = new();
@@ -44,12 +33,6 @@ namespace Main
             }
         }
 
-
-        private void OnDestroy()
-        {
-            UIController.loadPackEvent.RemoveListener(OnLoadPack);
-        }
     }
-
 
 }

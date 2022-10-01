@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 namespace Main
 {
@@ -11,7 +12,7 @@ namespace Main
         public TMP_Text count;
 
         public string idPack;
-        
+
         public void ClickOnBtn()
         {
             UIController.loadPackEvent.Invoke(idPack);   

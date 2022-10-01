@@ -13,6 +13,16 @@ namespace Main
             return JsonUtility.FromJson<MainMenuObject>(jsonTextFile.text);
         }
 
+        public bool CheckCrossIdEnable(string crossId)
+        {
+            string crossPath = "Json/" + UIController.lang + "/Cross/" + crossId;
+            TextAsset jsonTextFile = Resources.Load<TextAsset>(crossPath);
+
+            if (jsonTextFile == null) 
+                return false;
+            else 
+                return true;
+        }
 
 
         public List<Packs> GetListPack()

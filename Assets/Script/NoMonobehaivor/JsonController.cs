@@ -8,23 +8,17 @@ namespace Main
 {
     public class JsonController
     {
-        private GlobalArrayNew globalArray;      
-        private string level = "Json/";
-
-        private int block = 3;
-
+        private GlobalArrayNew globalArray;
+        private int block = 1;
         private int totalGroup = 0;
         private int polePerimetr = 3;
 
-        public List<LetterArray> Init(string name)
+        public List<LetterArray> Init(string name, int diff)
         {
-            level += name;
-            /*
-             * foreach(var file in Directory.EnumerateFiles(Application.persistentDataPath, "*_geo.json"))
-             * */
+            block = 4 - diff;
 
             // load json
-            TextAsset jsonTextFile = Resources.Load<TextAsset>(level);
+            TextAsset jsonTextFile = Resources.Load<TextAsset>(name);
             globalArray = JsonUtility.FromJson<GlobalArrayNew>(jsonTextFile.text);
             
             // word array

@@ -12,6 +12,15 @@ namespace Main
         private void Awake()
         {
             GameEvents.LoadConfigDoneEvent.AddListener(OnLoadConfig);
+            GameEvents.clearGame.AddListener(ClearBackground);
+        }
+
+        public void ClearBackground()
+        {
+            foreach (Transform child in folderBackground.transform)
+            {
+                Destroy(child.gameObject);
+            }
         }
 
         private void OnLoadConfig()

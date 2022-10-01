@@ -13,29 +13,46 @@ namespace Main
         [SerializeField] private GameObject mainMenu;
         [SerializeField] private GameObject selectPack;
         [SerializeField] private GameObject beforeGame;
+        [SerializeField] private GameObject notificationPanel;
+        [SerializeField] private GameObject topMenuCross;
+        [SerializeField] private GameObject inGameMenu;
 
         [Header("DevOp")]
         [SerializeField] private bool clearPref = false;
 
         public static UnityEvent<string> loadPackEvent = new();
-        public static UnityEvent<Cross, Packs> loadCrossEvent = new();
-        public static UnityEvent loadMainMenu = new();
+        public static UnityEvent<Cross, Packs> loadCrossEvent = new();             
+        public static UnityEvent<string> notificationEvent = new();
+        public static UnityEvent inGameMenuEvent = new();
+        public static string lang = "RU";        
 
-        public static string lang = "RU";
+        [SerializeField] private UnityEvent loadGame;        
+        [SerializeField] private UnityEvent<string> selectPackEventLocal;
 
         private void Awake()
         {
-            if (clearPref) PlayerPrefs.DeleteAll();
-
-            //GameEvents.LoadConfigDoneEvent.AddListener(OnLoad);
+            if (clearPref) PlayerPrefs.DeleteAll();            
             loadPackEvent.AddListener(OnSelectPack);
-            loadMainMenu.AddListener(OnLoadMainMenu);
-            loadCrossEvent.AddListener(OnBeforeLoadCrossEvent);
+            loadGame.Invoke();
+
+            loadCrossEvent.AddListener(OnBeforeLoadCrossEvent);            
+            notificationEvent.AddListener(OnNotification);
             
-            selectPack.SetActive(false);
-            beforeGame.SetActive(false);
         }
-        
+
+        public void OnNotification(string notif)
+        {
+            StartCoroutine(Notif(notif));
+            IEnumerator Notif(string notif)
+            {
+                notificationPanel.SetActive(true);
+                notificationPanel.GetComponent<NotificationController>().SetText(notif);
+                yield return new WaitForSeconds(2.0f);
+                notificationPanel.SetActive(false);
+            }  
+        }
+
+
         private void OnBeforeLoadCrossEvent(Cross cross, Packs pack)
         {
             beforeGame.SetActive(true);
@@ -43,26 +60,19 @@ namespace Main
             selectPack.SetActive(false);
         }
 
-        private void OnLoadMainMenu()
-        {
-            mainMenu.SetActive(true);
-        }
 
         private void OnSelectPack(string packId)
-        {
-            selectPack.SetActive(true);
-            selectPack.GetComponent<SelectPackControl>().LoadCrossList(packId);            
+        {            
+            selectPackEventLocal.Invoke(packId);         
         }
 
-        private void Start()
-        {
-            OnLoadMainMenu();
-        }
 
 
         private void OnDestroy()
         {
-            loadPackEvent.RemoveListener(OnSelectPack);
+            loadPackEvent.RemoveListener(OnSelectPack);            
+            loadCrossEvent.RemoveListener(OnBeforeLoadCrossEvent);            
+            notificationEvent.RemoveAllListeners();
         }
     }
 

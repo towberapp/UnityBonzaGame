@@ -14,6 +14,7 @@ namespace Main
         public static UnityEvent<Vector2, int> OnGragEvent = new();
         public static UnityEvent<int> OnGragEnd = new();
         public static UnityEvent winGameEvent = new();
+        public static UnityEvent clearGame = new();
 
         // allStatic Varible is load
         public static UnityEvent LoadConfigDoneEvent = new();
@@ -25,7 +26,7 @@ namespace Main
             OnGragEvent.RemoveAllListeners();
             OnGragEnd.RemoveAllListeners();
             LoadConfigDoneEvent.RemoveAllListeners();
-
+            clearGame.RemoveAllListeners();
 
         }
     }
