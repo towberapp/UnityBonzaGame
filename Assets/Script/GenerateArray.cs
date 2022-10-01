@@ -22,11 +22,16 @@ namespace Main
             {
                 Destroy(child.gameObject);
             }
-        }
+
+            GlobalStatic.listLetterData = new();
+            GlobalStatic.arrayLetter = null;
+            GlobalStatic.originalArrayLetter = null;
+            GlobalStatic.wordsGlobal = new();
+    }
 
         public void StartGame(string crossId, int diff)
         {
-            Debug.Log("START: " + crossId + ", diff: " + diff);
+            //Debug.Log("START: " + crossId + ", diff: " + diff);
 
             string crossPath = "Json/" + UIController.lang + "/Cross/" + crossId;
             LoadGame(crossPath, diff);

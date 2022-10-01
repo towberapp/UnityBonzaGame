@@ -12,6 +12,7 @@ namespace Main
         private int block = 1;
         private int totalGroup = 0;
         private int polePerimetr = 3;
+        private Config config = new();
 
         public List<LetterArray> Init(string name, int diff)
         {
@@ -25,12 +26,12 @@ namespace Main
             GlobalStatic.wordsGlobal = globalArray.wordBasicSaves;
 
             // glue
-            GlobalStatic.config.glue = globalArray.glue;
+            config.glue = globalArray.glue;
 
             // maxSize
             Vector2Int size = GetPoleSize(globalArray.wordBasicSaves);
-            GlobalStatic.config.width = size.x;
-            GlobalStatic.config.height = size.y;
+            config.width = size.x;
+            config.height = size.y;
 
             // creat list array
             List<LetterArray> letterArray = GenerateListArray(globalArray.wordBasicSaves);
@@ -53,8 +54,8 @@ namespace Main
 
         private LetterArray[,] Create2DArray(List<LetterArray> letterArray)
         {
-            int gWidth = GlobalStatic.config.width;
-            int gHeight = GlobalStatic.config.height;
+            int gWidth = config.width;
+            int gHeight = config.height;
 
             int widthReal = gWidth % block == 0 ? gWidth : (block - gWidth % block + gWidth);
             int heightReal = gHeight % block == 0 ? gHeight : (block - gHeight % block + gHeight);
@@ -71,7 +72,7 @@ namespace Main
         private List<LetterArray> GenerateListArray(List<WordBasicSave> wordBasicSaves)
         {
             List<LetterArray> list = new();
-            GlobalStatic.originalArrayLetter = new LetterArray[GlobalStatic.config.width, GlobalStatic.config.height];
+            GlobalStatic.originalArrayLetter = new LetterArray[config.width, config.height];
 
             int groupId = 0;
 

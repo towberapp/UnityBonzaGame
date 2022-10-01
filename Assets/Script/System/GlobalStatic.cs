@@ -11,7 +11,7 @@ namespace Main
         public static LetterArray[,] originalArrayLetter;
         public static List<WordBasicSave> wordsGlobal = new();       
 
-        public static Config config = new();
+        
         public static int xPole;
         public static int yPole;
         public static bool canMoveBlock = true;
