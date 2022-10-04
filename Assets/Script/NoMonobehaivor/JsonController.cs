@@ -161,7 +161,6 @@ namespace Main
         }
 
 
-
         private void ShaffleGroup(List<LetterArray> letterArray, Dictionary<int, Vector2Int> dicGroup)
         {   
             System.Random rnd = new ();
