@@ -100,13 +100,9 @@ namespace Main
 
         public void RotateGroupById()
         {
-            Debug.Log("rotate: " + GeneratorGroupControl.idGroup);
-
             if (GeneratorGroupControl.idGroup < 0) return;
-
             List<LetterData> listGroup = listLetterControl.GetListByIdGroup(GeneratorGroupControl.idGroup);
-            
-            
+
             bool isHorizontal = IsHorizontal(listGroup);
 
             // remove border

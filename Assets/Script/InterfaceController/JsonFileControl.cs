@@ -11,11 +11,18 @@ namespace Main
        public Dictionary<string, bool> data = new();
     }
 
+    public class PackStatus
+    {
+        public Dictionary<string, bool> data = new();
+    }
+
     public class JsonFileControl 
     {
-        private string menuPath = "Json/" + UIController.lang + "/menu";
-        private Dictionary<string, bool> statusCross = new();
+        private string menuPath = "Json/" + UIController.lang + "/menu";        
+        private Dictionary<string, bool> statusCross = new();        
+
         string name = "crossData";
+
 
         public void LoadCrossData()
         {            
@@ -27,15 +34,31 @@ namespace Main
             }
         }
 
+        public int GetPackDoneByIdPack(string id)
+        {
+            LoadCrossData();
+            Packs pack = GetPack(id);
+
+            int count = 0;
+            foreach (var item in pack.cross)
+            {
+                if (GetCrossStatus(item.id)) count++;                
+            }
+            return count;
+        }
+
+
         public bool GetCrossStatus(string crossId)
         {
             return statusCross.ContainsKey(crossId);
         }
 
+
         public void DeleteAllCrossStatus()
         {
             PlayerPrefs.DeleteKey(name);
         }
+
 
         public void SaveCrossStatus(string crossId)
         {

@@ -13,6 +13,19 @@ namespace Main
 
         GeneratorGroupControl generatorGroupControl = new();
 
+        private void Awake()
+        {
+            
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Delete))
+            {
+                RemoveGroup();
+            }                    
+        }
+
         public void AddWord()
         {
             if (wordInput.text.Length == 0) return;

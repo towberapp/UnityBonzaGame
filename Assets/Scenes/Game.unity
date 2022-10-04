@@ -429,7 +429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &172172511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4384,6 +4384,15 @@ MonoBehaviour:
     ver: 0
     glue: 
     length: 0
+  pack:
+    id: 
+    sort: 0
+    ver: 0
+    name: 
+    icon: 
+    count: 0
+    countDone: 0
+    cross: []
 --- !u!1 &1242209652
 GameObject:
   m_ObjectHideFlags: 0
@@ -4468,7 +4477,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1242209655}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 872374044}
+        m_TargetAssemblyTypeName: Main.UIController, Assembly-CSharp
+        m_MethodName: OnExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1242209655
 MonoBehaviour:
   m_ObjectHideFlags: 0

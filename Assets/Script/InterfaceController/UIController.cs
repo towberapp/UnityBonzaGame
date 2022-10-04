@@ -39,22 +39,11 @@ namespace Main
         private void Awake()
         {    
             if (clearPref) PlayerPrefs.DeleteAll();                 
-
             loadPackEvent.AddListener(OnSelectPack);
             loadGame.Invoke();
-
             loadCrossEvent.AddListener(OnBeforeLoadCrossEvent);            
             notificationEvent.AddListener(OnNotification);
-
             GameEvents.winGameEvent.AddListener(OnWin);            
-        }
-
-        private void OnWin()
-        {
-            string crossId = topmenu.cross.id;
-
-            winEvent.Invoke();
-            jsonControl.SaveCrossStatus(crossId);
         }
 
         public void OnNotification(string notif)
@@ -69,6 +58,17 @@ namespace Main
             }  
         }
 
+        public void OnExit()
+        {
+            Application.Quit();
+        }
+
+        private void OnWin()
+        {
+            string crossId = topmenu.cross.id;            
+            winEvent.Invoke();
+            jsonControl.SaveCrossStatus(crossId);
+        }
 
         private void OnBeforeLoadCrossEvent(Cross cross, Packs pack)
         {
@@ -92,6 +92,8 @@ namespace Main
             notificationEvent.RemoveAllListeners();
         }
     }
+
+
 
 
     [Serializable]

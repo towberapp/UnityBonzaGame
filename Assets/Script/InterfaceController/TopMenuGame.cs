@@ -17,8 +17,7 @@ namespace Main
         [SerializeField] private UnityEvent<Cross, Packs> restartEvent;
 
         public Cross cross;
-
-        private Packs pack;
+        public Packs pack;
 
         public void SetData(Cross cross, Packs pack)
         {

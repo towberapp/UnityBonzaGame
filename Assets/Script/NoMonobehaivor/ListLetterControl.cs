@@ -9,6 +9,7 @@ namespace Main
     {
         private List<LetterData> letterData = GlobalStatic.listLetterData;
 
+
         public List<LetterData> GetListByIdGroup (int idgroup)
         {
             List<LetterData> list = new ();
@@ -40,11 +41,14 @@ namespace Main
 
             foreach (var item in GlobalStatic.listLetterData)
             {
-                if (item.letter.groupId != idGroup)
+                if (item.letter.groupId == idGroup)
                     newData.Add(item);
             }
 
-            GlobalStatic.listLetterData = newData;
+            foreach (var item in newData)
+            {
+                GlobalStatic.listLetterData.Remove(item);
+            }
         }
     }
 }

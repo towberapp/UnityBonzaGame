@@ -26,8 +26,10 @@ namespace Main
                 GameObject obj = Instantiate(menuBlockPrefab, Vector2.zero, Quaternion.identity, contentFolder.transform);
                 MainMenuBlockController menuObj = obj.GetComponent<MainMenuBlockController>();
 
+                int packDone = jsonControl.GetPackDoneByIdPack(pack.id);
+
                 menuObj.title.text = pack.name;
-                menuObj.count.text = pack.countDone + "/" + pack.count;
+                menuObj.count.text = packDone + "/" + pack.count;
                 menuObj.icon.sprite = Resources.Load<Sprite>("Icons/" + pack.icon);
                 menuObj.idPack = pack.id;
             }

@@ -2,19 +2,29 @@
     "id": "demopack",
     "name": "СТАРТОВЫЙ",
     "icon": "demopack_icon_128",
-    "count": 2,
+    "count": 5,
     "ver": 1,
 
     "cross": [
         {
-            "id": "demopack_01",
-            "glue": "Демо кроссворд",            
+            "id": "demopack_00",
+            "glue": "туризм",
             "sort": 1
         },
         {
             "id": "demopack_02",
-            "glue": "Демо кроссворд 2",
-            "sort": 2
+            "glue": "Школа",
+            "sort": 1
+        },
+        {
+            "id": "demopack_03",
+            "glue": "фрукты-овощи",
+            "sort": 1
+        },
+        {
+            "id": "demopack_04",
+            "glue": "страны",
+            "sort": 1
         }
     ]
 }

@@ -307,8 +307,6 @@ namespace Main
             List<int> groupList = new List<int>();
             List<LetterData> listAllGroup = new();
 
-            //Debug.Log("POS ONE: " + posOneLetter);
-
             Vector2Int delta = Vector2Int.zero;
 
             for (int i = check; i < word.Length+check; i++)
@@ -318,11 +316,7 @@ namespace Main
                     Vector2Int letterOne = new Vector2Int(line[i].letter.xPos, line[i].letter.yPos);
                     delta = letterOne - posOneLetter;
                 }
-                // find delta beetween first element and posOneLetter
-                // then check all listAllGroup and check original array
 
-                //GlobalStatic.DebugObject(line[i]);
-                //GlobalStatic.DebugObject(line[i]);
 
                 int currentGroup = line[i].letter.groupId;
                 bool checkGroupList = groupList.Contains(currentGroup);
@@ -349,25 +343,14 @@ namespace Main
 
                 LetterArray origLetter = GlobalStatic.originalArrayLetter[newDeltaPos.x, newDeltaPos.y];
 
-                // NEEDS CHECK ON NULL!!!
                 if (origLetter.stringLetter != item.letter.stringLetter)
                 {
                     return false;
                 }
 
-
-                /*Debug.Log("LETTER: " + item.letter.stringLetter);
-                Debug.Log("posLetter: " + posLetter);
-                Debug.Log("delta: " + delta);
-                Debug.Log("NEW DELTAPOS: " + newDeltaPos);
-                Debug.Log("-------");*/
             }
 
             return true;
-
-            //GlobalStatic.originalArrayLetter;
-            // 
-
         }
 
 

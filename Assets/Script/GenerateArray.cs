@@ -19,10 +19,6 @@ namespace Main
             GameEvents.clearGame.AddListener(onClearLetter);
         }
 
-        private void Start()
-        {
-            // test dict to json            
-        }
 
         private void onClearLetter()
         {

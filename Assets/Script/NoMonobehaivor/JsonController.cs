@@ -163,7 +163,16 @@ namespace Main
 
 
         private void ShaffleGroup(List<LetterArray> letterArray, Dictionary<int, Vector2Int> dicGroup)
-        {
+        {   
+            System.Random rnd = new ();
+            for (int i = 0; i < dicGroup.Count; i++)
+            {
+                int j = rnd.Next(dicGroup.Count);
+                Vector2Int temp = dicGroup[j];
+                dicGroup[j] = dicGroup[i];
+                dicGroup[i] = temp;
+            }
+
             foreach (LetterArray item in letterArray)
             {
                 item.xPos = dicGroup[item.groupId].x + item.xPos;
