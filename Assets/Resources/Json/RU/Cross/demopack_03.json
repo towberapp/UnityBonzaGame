@@ -1,1 +1,91 @@
-{"glue":"фрукты-овощи","length":12,"wordBasicSaves":[{"word":"ГРУША","horizontal":false,"isConnect":false,"xStart":7,"yStart":15},{"word":"ПОМИДОР","horizontal":false,"isConnect":false,"xStart":5,"yStart":14},{"word":"СЛИВА","horizontal":true,"isConnect":false,"xStart":3,"yStart":11},{"word":"ОГУРЕЦ","horizontal":true,"isConnect":false,"xStart":5,"yStart":13},{"word":"КАРТОШКА","horizontal":true,"isConnect":false,"xStart":3,"yStart":8},{"word":"АПЕЛЬСИН","horizontal":false,"isConnect":false,"xStart":4,"yStart":8},{"word":"РЕДИС","horizontal":true,"isConnect":false,"xStart":0,"yStart":3},{"word":"АРБУЗ","horizontal":false,"isConnect":false,"xStart":0,"yStart":4},{"word":"ЯБЛОКО","horizontal":true,"isConnect":false,"xStart":2,"yStart":5},{"word":"БАНАН","horizontal":true,"isConnect":false,"xStart":6,"yStart":2},{"word":"МОРКОВКА","horizontal":false,"isConnect":false,"xStart":7,"yStart":9},{"word":"КАПУСТА","horizontal":false,"isConnect":false,"xStart":9,"yStart":8}]}
+{
+    "glue": "фрукты-овощи",
+    "length": 12,
+    "lang": "RU",
+    "wordBasicSaves": [
+        {
+            "word": "ГРУША",
+            "horizontal": false,
+            "isConnect": false,
+            "xStart": 7,
+            "yStart": 15
+        },
+        {
+            "word": "ПОМИДОР",
+            "horizontal": false,
+            "isConnect": false,
+            "xStart": 5,
+            "yStart": 14
+        },
+        {
+            "word": "СЛИВА",
+            "horizontal": true,
+            "isConnect": false,
+            "xStart": 3,
+            "yStart": 11
+        },
+        {
+            "word": "ОГУРЕЦ",
+            "horizontal": true,
+            "isConnect": false,
+            "xStart": 5,
+            "yStart": 13
+        },
+        {
+            "word": "КАРТОШКА",
+            "horizontal": true,
+            "isConnect": false,
+            "xStart": 3,
+            "yStart": 8
+        },
+        {
+            "word": "АПЕЛЬСИН",
+            "horizontal": false,
+            "isConnect": false,
+            "xStart": 4,
+            "yStart": 8
+        },
+        {
+            "word": "РЕДИС",
+            "horizontal": true,
+            "isConnect": false,
+            "xStart": 0,
+            "yStart": 3
+        },
+        {
+            "word": "АРБУЗ",
+            "horizontal": false,
+            "isConnect": false,
+            "xStart": 0,
+            "yStart": 4
+        },
+        {
+            "word": "ЯБЛОКО",
+            "horizontal": true,
+            "isConnect": false,
+            "xStart": 2,
+            "yStart": 5
+        },
+        {
+            "word": "БАНАН",
+            "horizontal": true,
+            "isConnect": false,
+            "xStart": 6,
+            "yStart": 2
+        },
+        {
+            "word": "МОРКОВКА",
+            "horizontal": false,
+            "isConnect": false,
+            "xStart": 7,
+            "yStart": 9
+        },
+        {
+            "word": "КАПУСТА",
+            "horizontal": false,
+            "isConnect": false,
+            "xStart": 9,
+            "yStart": 8
+        }
+    ]
+}

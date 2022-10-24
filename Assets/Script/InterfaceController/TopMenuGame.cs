@@ -9,9 +9,7 @@ namespace Main
     public class TopMenuGame : MonoBehaviour
     {
         [SerializeField] private TMP_Text tema;
-        [SerializeField] private TMP_Text glue;
-
-        private string temaTitle = "релю:";        
+        [SerializeField] private TMP_Text glue;     
 
         [SerializeField] private UnityEvent openGameMenu;
         [SerializeField] private UnityEvent<Cross, Packs> restartEvent;
@@ -25,7 +23,6 @@ namespace Main
             this.pack = pack;
 
             glue.text = cross.glue;
-            tema.text = temaTitle;
         }
 
         public void BackBtn()

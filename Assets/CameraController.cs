@@ -11,6 +11,7 @@ namespace Main
 
         //private Vector2 initialDistance;
         //private Vector2 initialScale;
+        [SerializeField] private bool Generator = false;
 
         private float distStart;
         private float distDelta;
@@ -54,18 +55,13 @@ namespace Main
                     sizeCamera = Camera.main.orthographicSize;
                 }
 
-                    // It is enough to check whether one of them began since we
-                    // already excluded the Ended and Canceled phase in the line before
+
                 if (touchZero.phase == TouchPhase.Moved || touchOne.phase == TouchPhase.Moved)
                 { 
-                    // track the initial values
                     Vector2 oneToch = new Vector2(touchZero.position.x, touchZero.position.y);
                     Vector2 twoToch = new Vector2(touchOne.position.x, touchOne.position.y);
 
                     float size = Camera.main.orthographicSize;
-
-                    /*Debug.Log("sizeCamera: " + sizeCamera);
-                    Debug.Log("distDelta: " + distDelta);*/
 
                     distDelta = ((oneToch - twoToch).magnitude - distStart)/40;
 
@@ -85,18 +81,6 @@ namespace Main
 
                     Camera.main.orthographicSize = cameraSize;
 
-                    /*  if (size < minSize)
-                      {
-                          distDelta = maxSize + size;
-                      }
-
-                      if (size > maxSize)
-                      {
-                          distDelta = maxSize - size;
-                      }
-  */
-
-                    //Camera.main.orthographicSize = sizeCamera - distDelta;
 
                 }
             }
@@ -106,7 +90,10 @@ namespace Main
         private void OnInit()
         {
             transform.position = new Vector3( GlobalStatic.xPole / 2, GlobalStatic.yPole / 2, -15 );
+            if (Generator) transform.position  = transform.position + new Vector3(0, -2, 0);
+
             Camera.main.orthographicSize = GlobalStatic.xPole/2 + 5;
+            if (Generator) Camera.main.orthographicSize += 3;
         }
 
   

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,39 +14,38 @@ namespace Main
         private GlobalArrayControl globalArrayControl = new();
 
 
-        public void GenerateWord(string word, Transform letterFolder, GameObject letterPrefab)
+        public int GenerateWord(string word, Transform letterFolder, GameObject letterPrefab, Vector2Int coord)
         {
             int groupId = wordBasicsArray.Count;
-
-            Vector2Int pos = new(GlobalStatic.xPole / 2, GlobalStatic.yPole);
 
             WordBasicGenerate wordBasic = new()
             {
                 word = word,
                 horizontal = true,                
-                xStart = pos.x,
-                yStart = pos.y,
+                xStart = coord.x,
+                yStart = coord.y,
                 groupId = groupId,
             };
-            wordBasicsArray.Add(wordBasic);
 
+            wordBasicsArray.Add(wordBasic);
 
             for (int i = 0; i < word.Length; i++)
             {
 
                 LetterArray letterArray = new()
                 {
-                    xPos = pos.x + i,
-                    yPos = pos.y,
+                    xPos = coord.x + i,
+                    yPos = coord.y,
                     stringLetter = word.Substring(i, 1),
                     groupId = groupId
                 };
 
-                GameObject obj = Object.Instantiate(letterPrefab, new Vector2(0, 0), Quaternion.identity, letterFolder);
+                GameObject obj = Object.Instantiate(letterPrefab, Vector2.zero, Quaternion.identity, letterFolder);
+                
                 BlockGlobalPublic
                     blockGlobal = obj.GetComponent<BlockGlobalPublic>();
-                blockGlobal.letterArray = letterArray;
-                blockGlobal.InitBlock();
+                    blockGlobal.letterArray = letterArray;
+                    blockGlobal.InitBlock();
 
                 LetterData letterData = new()
                 {
@@ -59,20 +57,36 @@ namespace Main
             }
             
             globalArrayControl.SetConnectorByIdGroup(groupId, true);
+
+            return groupId;
+        }
+
+        public void ClearAll()
+        {
+            foreach (LetterData item in GlobalStatic.listLetterData)
+            {
+                item.obj.GetComponent<BlockGlobalPublic>().DestroyObject();
+            }
+            GlobalStatic.listLetterData.Clear();
+            wordBasicsArray.Clear();
         }
 
 
-        public void RemoveGroup()
+        public bool RemoveGroup(int idGroup)
         {
-            wordBasicsArray[GeneratorGroupControl.idGroup].isActive = false;
-            List<LetterData> listGroup = listLetterControl.GetListByIdGroup(GeneratorGroupControl.idGroup);
+            if (!wordBasicsArray[idGroup].isActive) return false;
+
+            wordBasicsArray[idGroup].isActive = false;
+            List<LetterData> listGroup = listLetterControl.GetListByIdGroup(idGroup);                      
 
             foreach (var item in listGroup)
             {
                 item.obj.GetComponent<BlockGlobalPublic>().DestroyObject();
             }
             
-            listLetterControl.DeleteListByIdGroup(GeneratorGroupControl.idGroup);
+            listLetterControl.DeleteListByIdGroup(idGroup);
+
+            return true;
         }
 
 

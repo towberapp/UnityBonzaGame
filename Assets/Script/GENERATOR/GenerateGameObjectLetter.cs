@@ -6,17 +6,14 @@ namespace Main
 {
     public class GenerateGameObjectLetter : MonoBehaviour
     {
-        [SerializeField] private Transform letterFolder;
-        [SerializeField] private GameObject letterPrefab;
-
+        public Transform letterFolder;
+        public GameObject letterPrefab;
         [SerializeField] private TMP_InputField wordInput;
+        [SerializeField] private TMP_Text countWordText;
 
         GeneratorGroupControl generatorGroupControl = new();
-
-        private void Awake()
-        {
-            
-        }
+        
+        private int countWord = 0;
 
         void Update()
         {
@@ -31,8 +28,9 @@ namespace Main
             if (wordInput.text.Length == 0) return;
 
             string word = wordInput.text.ToUpper();
-            generatorGroupControl.GenerateWord(word, letterFolder, letterPrefab);
+            generatorGroupControl.GenerateWord(word, letterFolder, letterPrefab, new Vector2Int(0, countWord));
             wordInput.text = "";
+            ChangeCountWord(1);
         }
 
         public void RotateGroup()
@@ -42,7 +40,22 @@ namespace Main
 
         public void RemoveGroup()
         {
-            generatorGroupControl.RemoveGroup();
+           bool remove = generatorGroupControl.RemoveGroup(GeneratorGroupControl.idGroup);
+
+            if (remove) ChangeCountWord(- 1);
+        }
+
+        public void ClearAll()
+        {
+            generatorGroupControl.ClearAll();
+            countWord = 0;
+            ChangeCountWord(0);
+        }
+
+        public void ChangeCountWord(int change)
+        {
+            countWord += change;
+            countWordText.text = countWord.ToString();
         }
 
     }

@@ -7,8 +7,8 @@ namespace Main
 
         private void Awake()
         {
-            GlobalStatic.xPole = 12;
-            GlobalStatic.yPole = 15;
+            GlobalStatic.xPole = 15;
+            GlobalStatic.yPole = 20;
         }
 
         void Start()

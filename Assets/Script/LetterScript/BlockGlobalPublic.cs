@@ -98,6 +98,9 @@ namespace Main
         {
             Vector3 fxVector = new Vector3(transform.position.x, transform.position.y, transform.position.z);      
             Instantiate(FlashFx, fxVector, Quaternion.Euler(-90, 0, 0), transform);
+
+            //textComponent.color = new Color(0.6f,0.83f,0.88f, 1f);
+            textComponent.color = new Color(1f, 0.75f, 0.32f, 1f);
         }
 
         public void BlinkLetter()

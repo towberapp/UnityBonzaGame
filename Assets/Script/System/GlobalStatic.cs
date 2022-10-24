@@ -31,6 +31,7 @@ namespace Main
     {
         public string glue;
         public int length;
+        public string lang;
         public List<WordBasicSave> wordBasicSaves = new();
     }
 

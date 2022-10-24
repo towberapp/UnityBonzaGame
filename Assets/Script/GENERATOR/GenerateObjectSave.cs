@@ -8,31 +8,33 @@ namespace Main
     public class GenerateObjectSave
     {
 
-        public bool GetGlobalObject(string glue, string name)
+        public bool GetGlobalObject(string glue, string name, string lang, bool overwrite)
         {
             Vector2Int minpos = GetMinPos();
             List<WordBasicSave> wordBasic = MoveWordToZero(minpos);
-
-            if (wordBasic.Count <= 2) return false;
 
             GlobalArrayNew global = new()
             {
                 glue = glue,
                 length = wordBasic.Count,
+                lang = lang,
                 wordBasicSaves = wordBasic
             };
 
             string strJson = JsonUtility.ToJson(global);
-            SaveJson(strJson, name);
+            SaveJson(strJson, name, lang, overwrite);
 
             return true;
         }
 
 
-        private void SaveJson(string data, string name)
-        {
-            string path = "Assets/Resources/SaveJson/TempJson/"+ name + ".json";
-            using (FileStream fs = new FileStream(path, FileMode.OpenOrCreate))
+        private void SaveJson(string data, string name, string lang, bool overwrite)
+        {            
+            string path = "Assets/Resources/Json/" + lang + "/Cross/" + name + ".json";
+       
+            FileMode fm = FileMode.Create;
+
+            using (FileStream fs = new FileStream(path, fm))
             {
                 using (StreamWriter writer = new StreamWriter(fs))
                 {
@@ -41,6 +43,8 @@ namespace Main
                 }
             } 
         }
+
+
 
 
         private List<WordBasicSave> MoveWordToZero(Vector2Int vector)
