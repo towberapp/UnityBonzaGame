@@ -10,6 +10,14 @@ namespace Main
     {
         private bool active = false;
 
+
+        [SerializeField] private Locale startLocale;
+
+        private void Awake()
+        {
+            StartCoroutine(SetLocale(startLocale));
+        }
+
         public void ChangeLocale(Locale LocalId)
         {
             if (LocalizationSettings.SelectedLocale == LocalId) return;            

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1000267092296",
+    "project_id": "bonzay-23e03",
+    "storage_bucket": "bonzay-23e03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000267092296:android:4a055f215b06179d08a37d",
+        "android_client_info": {
+          "package_name": "ua.com.iber.bonzalang"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000267092296-ilhgii7dma7j7992ccokm0gtgitk6bh0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQmfmX9CChScK6bIxy8s2HCeFFb-s-pfo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000267092296-ilhgii7dma7j7992ccokm0gtgitk6bh0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,9 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using Newtonsoft.Json;
 
 namespace Main
 {
@@ -37,6 +33,8 @@ namespace Main
         {
             string crossPath = "Json/" + UIController.lang + "/Cross/" + crossId;
             LoadGame(crossPath, diff);
+
+            Firebase.Analytics.FirebaseAnalytics.LogEvent("LoadCross", "CrossId", crossId);
         }
 
         private void LoadGame(string loadFileName, int diff)

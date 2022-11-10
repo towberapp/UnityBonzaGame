@@ -2,7 +2,15 @@
     "packs": [
         {
             "id": "demopack",
-            "sort": 1            
+            "sort": 1
+        },
+        {
+            "id": "ClassicPack01",
+            "sort": 1
+        },
+        {
+            "id": "OtherPack",
+            "sort": 1
         }
     ]
 }

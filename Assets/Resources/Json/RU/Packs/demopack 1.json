@@ -1,0 +1,21 @@
+{
+    "id": "OtherPack",
+    "name": "Будут ещё!",
+    "icon": "icons8-knight-100",
+    "count": 1,
+    "ver": 1,
+    "cross": [
+        {
+            "id": "demopack_00",
+            "glue": "туризм"
+        },
+        {
+            "id": "demopack_02",
+            "glue": "Школа"
+        },
+        {
+            "id": "demopack_03",
+            "glue": "фрукты-овощи"
+        }
+    ]
+}

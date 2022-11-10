@@ -1,0 +1,49 @@
+{
+    "id": "ClassicPack01",
+    "name": "Солянка",
+    "icon": "icons8-knight-shield-100",
+    "count": 10,
+    "ver": 1,
+    "cross": [
+        {
+            "id": "geometry_figury",
+            "glue": "Фигуры"
+        },
+        {
+            "id": "mushrooms",
+            "glue": "Грибы"
+        },
+        {
+            "id": "flowers",
+            "glue": "Цветы"
+        },
+        {
+            "id": "seas_1",
+            "glue": "Моря"
+        },
+        {
+            "id": "profession",
+            "glue": "Профессии"
+        },
+        {
+            "id": "kitchen",
+            "glue": "Кухня"
+        },
+        {
+            "id": "part_body",
+            "glue": "Части тела"
+        },
+        {
+            "id": "sports",
+            "glue": "Виды спорта"
+        },
+        {
+            "id": "weather",
+            "glue": "Погода"
+        },
+        {
+            "id": "country",
+            "glue": "Страны"
+        }
+    ]
+}
